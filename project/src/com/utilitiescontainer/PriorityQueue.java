@@ -42,6 +42,25 @@ public class PriorityQueue<C> {
 	//Sort by Priority
 	public void sortByPriority() {
 		
+		int l = priorityQueue.length;
+		int minIndex = 0;
+		for (int i = 0; i< l-1; i++) {
+			// Find the minimum element in arr[X...N]
+			minIndex = i;
+			for(int j = 0; j < l; j++) {
+				if((Integer)priorityQueue[j][1] < (Integer)priorityQueue[minIndex][1]) {
+					minIndex = j;
+				}
+				}
+			// and place it at the beginning of [X...N]
+			Object[][] temp = new Object[1][2]; 
+			temp[0][0] = priorityQueue[minIndex][0];
+			temp[0][1] = priorityQueue[minIndex][1];
+			priorityQueue[minIndex][0] = priorityQueue[i][0];
+			priorityQueue[minIndex][1] = priorityQueue[i][1];
+			priorityQueue[i][0] = temp[0][0];
+			priorityQueue[i][1] = temp[0][1];
+		}
 	}
 	
 	//remove Most important element from array, call fixArray into priorityQueue	
