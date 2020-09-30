@@ -1,33 +1,34 @@
 package com.utilitiescontainer;
 
 public class PriorityQueue<C> {
+	
 	private static final int DEFAULT_INITIAL_CAPACITY = 11;
-	private static final int DEFAULT_PRIORITY = 0;
-	private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
-	static Object[][] priorityQueue = new Object[ DEFAULT_INITIAL_CAPACITY ][2];
+	private static final int DEFAULT_PRIORITY = 0; // Lowest Priority
+														// Object Array				Priority Array
+	private static Object[][] priorityQueue = new Object[ DEFAULT_INITIAL_CAPACITY ][2];
 	//put method to put stuff into arrays, Default Priority = findPriority();
 	public void put(C input) {
-		priorityQueue[findDefaultPriority()][0] = input;
-		priorityQueue[findDefaultPriority()][1] = DEFAULT_PRIORITY;
+		priorityQueue[findLocation()][0] = input;
+		priorityQueue[findLocation()][1] = DEFAULT_PRIORITY;
 		
 	}
 	public void put(C input, int priority) {
-		priorityQueue[findDefaultPriority()][0] = input;
-		priorityQueue[findDefaultPriority()][1] = priority;
+		priorityQueue[findLocation()][0] = input;
+		priorityQueue[findLocation()][1] = priority;
 		sortByPriority();
 	}
 	//To Find Priority, check within array check for non-null value add to a counter, "Priority"
 	//		If Priority == array.lenght()
 	//			make array size bigger by 2x
 
-	public int findDefaultPriority() { //Finds current default priority and if needed expands array 
-		int priority=0;
+	public int findLocation() { //Finds current default priority and if needed expands array 
+		int location=0;
 		for(int i=0; i<priorityQueue.length; i++) {
 			if(priorityQueue[i][0] != null) {
-				priority++;
+				location++;
 			}
 		}
-		if (priority == priorityQueue.length) { // expands array	
+		if (location == priorityQueue.length) { // expands array	
 			Object[][] tempPQ = new Object[priorityQueue.length * 2][0];
 			for(int i = 0; i<priorityQueue.length; i++) {
 				tempPQ[i][0] = priorityQueue[i][0];
@@ -35,7 +36,7 @@ public class PriorityQueue<C> {
 			}
 			priorityQueue = tempPQ;		
 			}
-		return priority;
+		return location;
 			
 	}
 	//Sort by Priority
@@ -45,7 +46,14 @@ public class PriorityQueue<C> {
 	
 	//remove Most important element from array, call fixArray into priorityQueue	
 	//	if no element to remove, throw out of bounds exception
-	
+	@SuppressWarnings("unchecked")
+	public C remove() {
+		Object returnC = priorityQueue[0][0];
+		priorityQueue[0][0] = null;
+		priorityQueue[0][1] = null;
+		priorityQueue = fixArray();
+		return (C)returnC;
+	}
 	
 	
 	
