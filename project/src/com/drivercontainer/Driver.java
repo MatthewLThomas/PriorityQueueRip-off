@@ -26,8 +26,9 @@ public class Driver {
 		System.out.println(bobsDiner.toString());
 		bobsDiner.put("Linas Torvalds", 1);
 		System.out.println(bobsDiner.toString());
-
-
+		System.out.println(bobsDiner.remove());
+		System.out.println(bobsDiner.remove());
+		System.out.println(bobsDiner.remove());
 	}
 
 }

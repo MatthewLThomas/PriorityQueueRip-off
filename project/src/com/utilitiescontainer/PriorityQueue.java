@@ -47,42 +47,22 @@ public class PriorityQueue<C> {
 	}
 	//Sort by Priority
 	public void sortByPriority() {
-		//Selection Sort
-		int l = priorityQueue.length;
-	
-		System.out.println(toString());
-		for (int i = 0; i< l-1; i++) {
-			// Find the minimum element in arr[I...N]
-			int minIndex = i;
-			for(int j = 0; j < l; j++) {
-				if(priorityQueue[j][1] != null && priorityQueue[minIndex][1] != null) {
-					if((int) priorityQueue[j][1]<(int) priorityQueue[minIndex][1]) {
-						minIndex = j;
-						//System.out.println(j+100);
-						//System.out.println(priorityQueue[j][1]);
-						//System.out.println(priorityQueue[minIndex][1]);
+		//Bubble Sort
+		int n = priorityQueue.length;
+		for (int i = 0; i< n-1; i++) {
+			for(int j = 0; j < n-1; j++) {
+				if(priorityQueue[j][1] != null && priorityQueue[j+1][1] != null) {
+					if((int) priorityQueue[j][1] > (int) priorityQueue[j+1][1]) {
+						//swap arr[j+1] and arr[j]
+						Object temp = priorityQueue[j][0];
+						Object temp1 = priorityQueue[j][1];
 						
+						priorityQueue[j][0] = priorityQueue[j+1][0];
+						priorityQueue[j][1] = priorityQueue[j+1][1];
+						priorityQueue[j+1][0] = temp;
+						priorityQueue[j+1][1] = temp1;
 						
-					}
 					
-				}
-			
-			}
-			// and place it at the beginning of [I...N]
-			//TODO Fix Me
-			if(priorityQueue[minIndex][0] != null)  {
-				if(priorityQueue[minIndex][1] != null) {
-					if((int)priorityQueue[i][1] > (int)priorityQueue[minIndex][1]) {
-						
-						Object temp = priorityQueue[minIndex][0];
-						Object temp1 = priorityQueue[minIndex][1];
-						
-						priorityQueue[minIndex][0] = priorityQueue[i][0];
-						priorityQueue[minIndex][1] = priorityQueue[i][1];
-						
-						priorityQueue[i][0] = temp;
-						priorityQueue[i][1] = temp1;
-						System.out.println(toString());
 					}
 				}
 			}
@@ -117,7 +97,7 @@ public class PriorityQueue<C> {
 	// return temp array
 	public Object[][] fixArray() {
 		Object[][] tempArr = new Object[priorityQueue.length][2];
-		for (int i = 0; i<priorityQueue.length; i++) {
+		for (int i = 0; i<priorityQueue.length-1; i++) {
 			if (priorityQueue[i][0] == null) {
 				tempArr[i][0] = priorityQueue[i+1][0];
 				tempArr[i][1] = priorityQueue[i+1][1];
