@@ -3,7 +3,7 @@ package com.utilitiescontainer;
 public class PriorityQueue<C> {
 	
 	private static final int DEFAULT_INITIAL_CAPACITY = 11;
-	private static final int DEFAULT_PRIORITY = 0; // Lowest Priority
+	private static final int DEFAULT_PRIORITY = 9; // Lowest Priority
 														// Object Array				Priority Array
 	private static Object[][] priorityQueue = new Object[ DEFAULT_INITIAL_CAPACITY ][2];
 	//put method to put stuff into arrays, Default Priority = findPriority();
@@ -41,7 +41,7 @@ public class PriorityQueue<C> {
 	}
 	//Sort by Priority
 	public void sortByPriority() {
-		
+		//Selection Sort
 		int l = priorityQueue.length;
 		int minIndex = 0;
 		for (int i = 0; i< l-1; i++) {
@@ -79,7 +79,7 @@ public class PriorityQueue<C> {
 	
 	//fixArray(){ fixes holes in array}
 	//	creates temp. array
-	// fills in any Null with element after it, relpace element after it with Null store in temp array
+	// fills in any Null with element after it, replace element after it with Null store in temp array
 	// return temp array
 	public Object[][] fixArray() {
 		Object[][] tempArr = new Object[priorityQueue.length][2];
@@ -94,5 +94,15 @@ public class PriorityQueue<C> {
 		return tempArr;
 	}
 	
+	public String toString() {
+		StringBuilder temp = new StringBuilder();
+		for(int i = 0; i<priorityQueue.length; i++) {
+			temp.append(priorityQueue[1][0].toString());
+			temp.append(", ");
+		}
+		
+		return temp.toString();
+		
+	}
 	
 }
