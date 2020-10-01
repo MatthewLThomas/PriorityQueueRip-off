@@ -63,7 +63,7 @@ public class PriorityQueue<C> {
 				}
 			}
 			// and place it at the beginning of [I...N]
-			
+			//TODO Fix Me
 			System.out.println(i);
 			Object temp = priorityQueue[minIndex][0];
 			Object temp1 = priorityQueue[minIndex][1];
