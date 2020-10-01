@@ -2,19 +2,23 @@ package com.utilitiescontainer;
 
 public class PriorityQueue<C> {
 	
+	
 	private static final int DEFAULT_INITIAL_CAPACITY = 11;
 	private static final int DEFAULT_PRIORITY = 9; // Lowest Priority
+	
 														// Object Array				Priority Array
 	private static Object[][] priorityQueue = new Object[ DEFAULT_INITIAL_CAPACITY ][2];
 	//put method to put stuff into arrays, Default Priority = findPriority();
 	public void put(C input) {
-		priorityQueue[findLocation()][0] = input;
-		priorityQueue[findLocation()][1] = DEFAULT_PRIORITY;
+		int location = findLocation();
+		priorityQueue[location][0] = input;
+		priorityQueue[location][1] = DEFAULT_PRIORITY;
 		
 	}
 	public void put(C input, int priority) {
-		priorityQueue[findLocation()][0] = input;
-		priorityQueue[findLocation()][1] = priority;
+		int location = findLocation();
+		priorityQueue[location][0] = input;
+		priorityQueue[location][1] = priority;
 		sortByPriority();
 	}
 	//To Find Priority, check within array check for non-null value add to a counter, "Priority"
@@ -22,17 +26,19 @@ public class PriorityQueue<C> {
 	//			make array size bigger by 2x
 
 	public int findLocation() { //Finds current default priority and if needed expands array 
-		int location=0;
+	int location=0;
 		for(int i=0; i<priorityQueue.length; i++) {
 			if(priorityQueue[i][0] != null) {
 				location++;
+				
 			}
 		}
-		if (location == priorityQueue.length) { // expands array	
-			Object[][] tempPQ = new Object[priorityQueue.length * 2][0];
+		if (location > priorityQueue.length-1) { // expands array	
+			Object[][] tempPQ = new Object[priorityQueue.length * 2][86];
 			for(int i = 0; i<priorityQueue.length; i++) {
 				tempPQ[i][0] = priorityQueue[i][0];
 				tempPQ[i][1] = priorityQueue[i][1];
+				
 			}
 			priorityQueue = tempPQ;		
 			}
@@ -45,21 +51,26 @@ public class PriorityQueue<C> {
 		int l = priorityQueue.length;
 		int minIndex = 0;
 		for (int i = 0; i< l-1; i++) {
-			// Find the minimum element in arr[X...N]
+			// Find the minimum element in arr[I...N]
 			minIndex = i;
 			for(int j = 0; j < l; j++) {
-				if((Integer)priorityQueue[j][1] < (Integer)priorityQueue[minIndex][1]) {
-					minIndex = j;
+				if(priorityQueue[j][1] != null && priorityQueue[minIndex][1] != null) {
+					int b = (int) priorityQueue[j][1];
+					int c = (int) priorityQueue[minIndex][1];
+					if(b<c) {
+						minIndex = j;
+					}
 				}
-				}
-			// and place it at the beginning of [X...N]
-			Object[][] temp = new Object[1][2]; 
-			temp[0][0] = priorityQueue[minIndex][0];
-			temp[0][1] = priorityQueue[minIndex][1];
+			}
+			// and place it at the beginning of [I...N]
+			
+			System.out.println(i);
+			Object temp = priorityQueue[minIndex][0];
+			Object temp1 = priorityQueue[minIndex][1];
 			priorityQueue[minIndex][0] = priorityQueue[i][0];
 			priorityQueue[minIndex][1] = priorityQueue[i][1];
-			priorityQueue[i][0] = temp[0][0];
-			priorityQueue[i][1] = temp[0][1];
+			priorityQueue[i][0] = temp;
+			priorityQueue[i][1] = temp1;
 		}
 	}
 	
@@ -75,7 +86,14 @@ public class PriorityQueue<C> {
 	}
 	
 	
-	
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for(int i = 0; i<priorityQueue.length; i++)
+			if (priorityQueue[i][1] != null) {
+				sb.append(priorityQueue[i][1].toString());
+			}
+		return sb.toString();
+	}
 	
 	//fixArray(){ fixes holes in array}
 	//	creates temp. array
@@ -94,15 +112,6 @@ public class PriorityQueue<C> {
 		return tempArr;
 	}
 	
-	public String toString() {
-		StringBuilder temp = new StringBuilder();
-		for(int i = 0; i<priorityQueue.length; i++) {
-			temp.append(priorityQueue[1][0].toString());
-			temp.append(", ");
-		}
-		
-		return temp.toString();
-		
-	}
+	
 	
 }
