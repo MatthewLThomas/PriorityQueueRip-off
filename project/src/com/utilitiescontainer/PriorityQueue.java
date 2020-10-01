@@ -4,7 +4,7 @@ public class PriorityQueue<C> {
 	
 	
 	private static final int DEFAULT_INITIAL_CAPACITY = 11;
-	private static final int DEFAULT_PRIORITY = 9; // Lowest Priority
+	private static final int DEFAULT_PRIORITY = 0; // Lowest Priority
 	
 														// Object Array				Priority Array
 	private static Object[][] priorityQueue = new Object[ DEFAULT_INITIAL_CAPACITY ][2];
@@ -55,22 +55,35 @@ public class PriorityQueue<C> {
 			minIndex = i;
 			for(int j = 0; j < l; j++) {
 				if(priorityQueue[j][1] != null && priorityQueue[minIndex][1] != null) {
-					int b = (int) priorityQueue[j][1];
-					int c = (int) priorityQueue[minIndex][1];
-					if(b<c) {
+					if((int) priorityQueue[j][1]<(int) priorityQueue[minIndex][1]) {
 						minIndex = j;
+						//System.out.println(j+100);
+						//System.out.println(priorityQueue[j][1]);
+						//System.out.println(priorityQueue[minIndex][1]);
+						
+						
 					}
+					
 				}
+			
 			}
 			// and place it at the beginning of [I...N]
 			//TODO Fix Me
-			System.out.println(i);
-			Object temp = priorityQueue[minIndex][0];
-			Object temp1 = priorityQueue[minIndex][1];
-			priorityQueue[minIndex][0] = priorityQueue[i][0];
-			priorityQueue[minIndex][1] = priorityQueue[i][1];
-			priorityQueue[i][0] = temp;
-			priorityQueue[i][1] = temp1;
+			if(priorityQueue[minIndex][0] != null)  {
+				if(priorityQueue[minIndex][1] != null) {
+					if((int)priorityQueue[i][1] > (int)priorityQueue[minIndex][1]) {
+						Object temp = priorityQueue[minIndex][0];
+						Object temp1 = priorityQueue[minIndex][1];
+						
+						priorityQueue[minIndex][0] = priorityQueue[i][0];
+						priorityQueue[minIndex][1] = priorityQueue[i][1];
+						priorityQueue[i][0] = temp;
+						priorityQueue[i][1] = temp1;
+						
+					}
+				}
+			}
+			
 		}
 	}
 	

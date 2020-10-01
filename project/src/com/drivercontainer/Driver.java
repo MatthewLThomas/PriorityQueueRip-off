@@ -21,7 +21,7 @@ public class Driver {
 		bobsDiner.put("Hideo Kojima");System.out.println('K');
 		bobsDiner.put("Will");System.out.println('L');
 		bobsDiner.put("Bill");System.out.println('M');
-		bobsDiner.put("Linas Torvalds", 1);System.out.println('N');
+		bobsDiner.put("Linas Torvalds", 9);System.out.println('N');
 		System.out.println(bobsDiner.toString());
 		
 
