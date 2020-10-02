@@ -32,6 +32,7 @@ public class Driver {
 		System.out.println(bobsDiner.remove());
 		System.out.println(bobsDiner.remove());
 		System.out.println(bobsDiner.remove());
+		System.out.println(bobsDiner.toString());
 	}
 
 }
