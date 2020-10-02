@@ -8,8 +8,10 @@ public class Driver {
 		
 		
 		PriorityQueue<String> bobsDiner = new PriorityQueue<String>();
+		bobsDiner.put("McCoy", 10);
 		bobsDiner.put("James");
 		bobsDiner.put("Arthur");
+		System.out.println(bobsDiner.toString());
 		bobsDiner.put("Hal");
 		bobsDiner.put("Erica");
 		bobsDiner.put("Bill");
@@ -19,12 +21,13 @@ public class Driver {
 		bobsDiner.put("Matthew");
 		bobsDiner.put("Tim");
 		bobsDiner.put("Hideo Kojima");
+		//Triggers Array Expansion
 		bobsDiner.put("Will");
 		bobsDiner.put("Bill");
 		System.out.println(bobsDiner.toString());
-		bobsDiner.put("McCoy", 5);
+		bobsDiner.put("McCoy", 4);
 		System.out.println(bobsDiner.toString());
-		bobsDiner.put("Linas Torvalds", 1);
+		bobsDiner.put("Linas Torvalds", -1);
 		System.out.println(bobsDiner.toString());
 		System.out.println(bobsDiner.remove());
 		System.out.println(bobsDiner.remove());
