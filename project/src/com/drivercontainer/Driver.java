@@ -25,14 +25,11 @@ public class Driver {
 		bobsDiner.put("Will");
 		bobsDiner.put("Bill");
 		System.out.println(bobsDiner.toString());
-		bobsDiner.put("McCoy", 4);
+		bobsDiner.put("Jimmy", 4);
 		System.out.println(bobsDiner.toString());
 		bobsDiner.put("Linas Torvalds", -1);
 		System.out.println(bobsDiner.toString());
-		System.out.println(bobsDiner.remove());
-		System.out.println(bobsDiner.remove());
-		System.out.println(bobsDiner.remove());
-		System.out.println(bobsDiner.toString());
+		
 	}
 
 }
